@@ -1,4 +1,3 @@
-
 // Import Express.js
 const express = require('express');
 // Import built-in Node.js package 'path' to resolve path of files that are located on the server
@@ -11,14 +10,10 @@ const e = require('express');
 // Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
 
-// const htmlRoute = require("/routes/htmlRoute")
-
 // Specify on which port the Express.js server will run
 const PORT = process.env.PORT || 3001;
 // Initialize an instance of Express.js
 const app = express();
-
-
 
 app.use(express.json());
 // Static middleware pointing to the public folder
@@ -35,8 +30,6 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, './public/notes.html'))
 
 );
-
-
 // POST request for notes
 app.post(`/api/notes`, (req, res) => {
     // Log that a POST request was received
@@ -50,7 +43,6 @@ app.post(`/api/notes`, (req, res) => {
         text,
         id: uuidv4(),
     };
-
     // Obtain existing reviews
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
@@ -69,24 +61,9 @@ app.post(`/api/notes`, (req, res) => {
                     : console.info('Successfully updated reviews!')
             )
         }
-
     })
     res.json('added');
 });
-
-
-
-//   app.delete(`api/notes/${id}`, (req, res) => {
-//     const 
-//   }
-//   res.sendFile(path.join()))
-
-
-
-
-
-
-
 // Creating a DELETE request
 app.delete("/api/notes/:id", (req, res) => {
     const deleteId= req.params.id;
@@ -102,7 +79,6 @@ app.delete("/api/notes/:id", (req, res) => {
             console.log("req params", req.params.id)
             const itemIndex = parsedNotes.findIndex(({ id }) => id === req.params.id);
             if (itemIndex >= 0) {
-                // myArray.splice(itemIndex, 1);
                 console.log(itemIndex)
                 parsedNotes.splice(itemIndex, 1);
             }
@@ -112,12 +88,11 @@ app.delete("/api/notes/:id", (req, res) => {
                 : console.info('Successfully updated reviews!')
         )
         }
-       
     })
     res.json("deleted");
 });
 
-
+// Returns the index file
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, './public/index.html'))
 );
