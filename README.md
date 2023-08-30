@@ -12,9 +12,9 @@
 
 ## Description 
 This is a Note Taker
-![first page](../images/notetakerfront.PNG)
-![second page](../images/notetaker2.PNG)
-![Example](../images/example.PNG)
+![front page](images/notetakerfront.PNG)
+![second page](images/notetaker2.PNG)
+![example page](images/example.PNG)
 ## Installation 
 NA
 
